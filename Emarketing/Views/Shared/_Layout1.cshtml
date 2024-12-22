@@ -1,0 +1,71 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        .na {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    <link href="~/Content/custom.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="padding:0;margin:0;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Yas Ecommerece</a>
+            </div>
+            <ul class="nav navbar-nav " style="display:flex;display:inline">
+                <li>@Html.ActionLink("Category", "Index", "User", null, new { @class = "ht nav-link" })</li>
+                <li>
+                    @if (Session["u_id"] != null)
+                    {
+                        @Html.ActionLink("Post An Ad", "CreateAd", "User", null, new { @class = "ht nav-link" })
+
+                    }
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right " style="display:flex;display:inline">
+                <li>
+                    @if (Session["u_id"] == null)
+                    {
+
+                        @Html.ActionLink("Sign In", "login", "User", null, new { @class = "ht nav-link", })
+
+                    }
+                </li>
+                <li>
+                    @if (Session["u_id"] == null)
+                    {
+                        @Html.ActionLink("Sign Up", "SignUp", "User", null, new { @class = "ht nav-link" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Sign Out", "Signout", "User", null, new { @class = "ht nav-link" })
+
+                    }
+                <li>
+            </ul>
+        </div> 
+        
+    
+    </nav>
+
+   
+
+    @RenderBody()
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>

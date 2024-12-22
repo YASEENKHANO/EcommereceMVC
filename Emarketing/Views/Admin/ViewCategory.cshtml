@@ -1,0 +1,166 @@
+﻿
+@using PagedList.Mvc
+@using PagedList
+@model IPagedList<Emarketing.Models.tb_category>
+
+@{
+    ViewBag.Title = "ViewCategory";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2 class="text-center">View Categories</h2>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View Category</title>
+    <link href="~/Content/paginition.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid" style="height: 1150px;">
+        <!-- Header Row -->
+        <div class="row">
+            <!------>
+            @{
+                var areas = new List<SelectListItem>
+                    {
+    new SelectListItem { Text = "<i class='fas fa-map-marker-alt'></i> All Pakistan", Value = "All Pakistan" },
+    new SelectListItem { Text = "<fa fa-map-marker'></i> Islamabad", Value = "Islamabad" },
+    new SelectListItem { Text = "<fa fa-map-marker'></i> Karachi", Value = "Karachi" },
+    new SelectListItem { Text = "<i class='fas fa-map-marker-alt'></i> Lahore", Value = "Lahore" },
+    new SelectListItem { Text = "<i class='fas fa-map-marker-alt'></i> Quetta", Value = "Quetta" },
+    new SelectListItem { Text = "<i class='fas fa-map-marker-alt'></i> Peshawar", Value = "Peshawar" }
+};
+            }
+
+
+
+            @*@section Scripts {
+                <script>
+                    $(document).ready(function () {
+                        $('#areaSelect').on('change', function () {
+                            var selectedValue = $(this).val();
+                            // Additional logic can be added here based on selection
+                        });
+                    });
+                </script>
+            }*@
+
+            <!------>
+            <!---Search bar below-->
+            @using (Html.BeginForm("Ads", "User"))
+            {
+                <div class="navbar-form">
+                    <!------>
+                    <label for="areaSelect">Area</label>
+                    <select id="areaSelect" class=" col-2">
+                        <option value=""><i class="fa fa-map-marker" style="font-size:36px"></i>All Pakistan</option>
+                        @foreach (var area in areas)
+                        {
+                            <option value="@area.Value">@Html.Raw(area.Text)</option>
+                        }
+                    </select>
+                    <!------>
+                    <div class="form-group col-6">
+
+                        <input type="text" class="form-control" placeholder="Search" name="search" id="search">
+                    </div>
+                    <button type="submit" class="btn"><img src="~/Content/img/icons8-search-bar-100.png" width="60px" height="60px" /></button>
+                </div>
+
+
+
+            }
+
+
+            <!---Search bar above-->
+            <!----Category links below-->
+
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-light" style="color:black">
+                <div class="container">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li>@Html.ActionLink("All Categories", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li>@Html.ActionLink("Mobile Phones", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li>@Html.ActionLink("Cars", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li>@Html.ActionLink("Moter Bikes", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li>@Html.ActionLink("Houses", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li>@Html.ActionLink("Real Estate", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-3"></div>
+
+                </div>
+            </nav>
+
+
+
+            <!----Category links above-->
+
+
+        </div>
+        <div class="row">
+            <div class="col-12" style="height: 150px; border: 1px solid;">
+                <img src="~/Content/img/508617025-800x600 (1).png" style="width: 100%; height: 100%;" />
+                @*<img src="~/Content/img/Modern-e-Commerce-Web-Design-Trends.-Part-2.gif" style="width: 100%; height: 100%;" />*@
+            </div>
+        </div>
+
+        <!-- Main Content with Sidebars -->
+        <div class="row">
+            <!-- Left Sidebar -->
+            <!-- Left Sidebar -->
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="background-color: #f8f9fa; border-right: 1px solid #ddd; min-height: 1000px;">
+                <img src="~/Content/img/Untitled design (1).png" class="img-fluid" style="height:700px" />
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-8 col-md-6 col-sm-6">
+                <div class="row" style="margin-bottom: 40px;">
+                    <img src="~/Content/img/13839277399591746324.png" style="width: 100%; height: 100%;" class="mb-6 mt-1" />
+
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="col-lg-4 col-md-4 mb-4">
+                                <img src="@Url.Content(item.cat_image)" style="height: 200px; width: 100%; border-radius: 50px;" />
+                                <h4 style="color: #808080; font-family: 'Arial Rounded MT'; text-align: center;">@item.cat_name</h4>
+                                <div class="text-center mt-2">
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.cat_id }, new { @class = "btn btn-danger btn-sm" })*@
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <!-- Right Sidebar -->
+            <div class="col-lg-2 col-md-3 col-sm-3 d-none d-sm-block" style="background-color: #f8f9fa; border-left: 1px solid #ddd; min-height: 1000px;">
+                <img src="~/Content/img/Untitled design.png" style="height:500px" />
+            </div>
+        </div>
+
+
+        <!-- Pagination -->
+        <div id="container" class="text-center mt-4">
+            <div class="pagination">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                of @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("ViewCategory", new { page }))
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,61 @@
+﻿
+.ht {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 15px;
+    display: inline-block; /* Default behavior for large screens */
+    font-size: 16px;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.ht:hover {
+    color: #ccc; /* Hover effect */
+}
+/* Align nav-links horizontally on large screens */
+@media (min-width: 768px) {
+    .ht {
+        display: inline-block;
+    }
+}
+/* Stack nav-links vertically on smaller screens */
+@media (max-width: 767px) {
+    .ht {
+        display: block;
+        width: 100%; /* Make links take full width */
+        padding: 10px;
+        text-align: center;
+    }
+}
+/* Additional styling for better mobile compatibility */
+.navbar {
+    margin: 0;
+    padding: 10px 15px;
+    border: none;
+    background-color: #222; /* Navbar background color */
+}
+
+.navbar-brand {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.nav {
+    margin: 0;
+    padding: 0;
+}
+
+    .nav .nav-link {
+        margin: 0;
+        padding: 10px;
+    }
+
+.navbar-nav {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on mobile */
+}
+
+    .navbar-nav > li {
+        list-style: none;
+    }
+
+
